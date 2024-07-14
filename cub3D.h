@@ -3,7 +3,9 @@
 
 typedef struct s_data
 {
-	char **map;
+	char 	**map;
+	char	*map_name;
+	int		fd;
 } t_data;
 
 #endif
