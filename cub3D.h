@@ -6,6 +6,7 @@ typedef struct s_data
 	char 	**map;
 	char	*map_name;
 	int		fd;
+	char	**texture;
 } t_data;
 
 #endif

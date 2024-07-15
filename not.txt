@@ -1,0 +1,58 @@
+void	map_scan(t_data *data)
+{
+    // 	char	*line;
+    // 	char	*tmp;
+    // 	char	*map_line;
+
+	data->fd = open(data->map_name, O_RDONLY);
+	if (data->fd == -1)
+        error(data, "fd error");
+	data_init(data);
+	// fd_opener(data);
+	// map_line = ft_strdup("");
+	// if (!map_line)
+	// 	error(data, "strdup error");
+	// while ((line = get_next_line(data->fd)))
+	// {
+	// 	tmp = map_line;
+	// 	map_line = ft_strjoin(tmp, line);
+	// 	if (!map_line)
+	// 		return(free(tmp), free(line), error(data, "ft_strjoin Error"), (void)0);
+	// 	free(tmp);
+	// 	free(line);
+	// }
+	// if (!(data->map = ft_split(map_line, '\n')))
+	// 	error(data, "Split Error");
+	// free(map_line);
+	// for (size_t i = 0; data->map[i]; i++)
+	// {
+	// 	printf("%s\n", data->map[i]);
+	// }	
+}
+
+
+
+void	fd_opener(t_data *data)
+{
+	close(data->fd);
+	data->fd = open(data->map_name, O_RDONLY);
+	if (data->fd == -1)
+        error(data, "fd error");
+}
+
+
+
+void	map_scan(t_data *data)
+{
+	data->fd = open(data->map_name, O_RDONLY);
+	if (data->fd == -1)
+        error(data, "fd error");count--;
+	data_init(data);
+}
+
+./path_to_the_north_texture
+./path_to_the_south_texture
+./path_to_the_west_texture
+./path_to_the_east_texture
+F 220,100,0
+C 225,30,0

@@ -1,13 +1,13 @@
 NAME	:= cub3D
 
-FLAGS	:= -Wall -Wextra -Werror
+FLAGS	:= -Wall -Wextra -Werror -g
 
 CC		:= gcc
 RM		:= rm -rf
 
 SRC		:= main.c
 LIBFT	:= Libft/libft.a
-GNL     := gnl/gnl.a
+GNL     := GNL/gnl.a
 OBJ		:= $(SRC:.cpp=.o)
 
 RED		:= \033[31m
