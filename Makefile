@@ -5,7 +5,10 @@ FLAGS	:= -Wall -Wextra -Werror -g
 CC		:= gcc
 RM		:= rm -rf
 
-SRC		:= main.c
+SRC		:=	main.c\
+			map_scan.c\
+			utils.c
+
 LIBFT	:= Libft/libft.a
 GNL     := GNL/gnl.a
 OBJ		:= $(SRC:.cpp=.o)
