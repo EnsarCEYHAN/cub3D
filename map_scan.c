@@ -7,12 +7,12 @@ void	init_texture(t_data *data)
 	char	*str;
 	int		i;
 
-	data->texture = (char **)malloc(sizeof(char *) * 7);
+	data->texture = (char **)malloc(sizeof(char *) * 5);
 	if (!data->texture)
 		error(data, "malloc error");
-	data->texture[6] = NULL;
+	data->texture[4] = NULL;
 	i = -1;
-	while (++i < 6)
+	while (++i < 4)
 	{
 		str = get_next_line(data->fd);
 		data->texture[i] = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
@@ -21,8 +21,12 @@ void	init_texture(t_data *data)
 		ft_strlcpy(data->texture[i], str, ft_strlen(str));
 		printf("%s\n", data->texture[i]);
 		free(str);
-	}	
+	}
 }
+
+// int	init_rgb(t_data *data)
+// {	
+// }
 
 void	init_data(t_data *data, int count)
 {
@@ -55,6 +59,8 @@ void	fd_opener(t_data *data)
 
 void	map_scan(t_data *data, int count, char *str)
 {
+	// int	i;
+
 	fd_opener(data);
 	while (1)
 	{
@@ -71,5 +77,10 @@ void	map_scan(t_data *data, int count, char *str)
 		error(data, "malloc error");
 	data->map[count] = NULL;
 	init_texture(data);
+	// i = -1;
+	// while (++i)
+	// {													devam edicez
+	// 	data->rgb[0][i] = init_rgb(data, data.);
+	// }
     init_data(data, count);
 }

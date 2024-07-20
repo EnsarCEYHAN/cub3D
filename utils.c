@@ -22,6 +22,10 @@ void	free_all(t_data *data)
 		free(data->texture);
 	}
 	close(data->fd);
+	if (data->mlx)
+		free(data->mlx);
+	if (data->window)
+		free(data->window);
 }
 
 void	error(t_data *data, char *str)

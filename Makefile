@@ -9,6 +9,7 @@ SRC		:=	main.c\
 			map_scan.c\
 			utils.c
 
+LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
 LIBFT	:= Libft/libft.a
 GNL     := GNL/gnl.a
 OBJ		:= $(SRC:.cpp=.o)
@@ -28,7 +29,7 @@ FCLEAN_MSG	:= printf "Executable $(RED)$(NAME)$(RESET) removed\n"
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(GNL) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(GNL) $(LIBRARY) -o $(NAME)
 	$(CC_MSG)
 	$(SUCCESS_MSG)
 
