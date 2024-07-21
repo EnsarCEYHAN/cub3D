@@ -7,12 +7,12 @@ void	init_texture(t_data *data)
 	char	*str;
 	int		i;
 
-	data->texture = (char **)malloc(sizeof(char *) * 5);
+	data->texture = (char **)malloc(sizeof(char *) * 7);
 	if (!data->texture)
 		error(data, "malloc error");
-	data->texture[4] = NULL;
+	data->texture[6] = NULL;
 	i = -1;
-	while (++i < 4)
+	while (++i < 6)
 	{
 		str = get_next_line(data->fd);
 		data->texture[i] = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
@@ -24,9 +24,44 @@ void	init_texture(t_data *data)
 	}
 }
 
-// int	init_rgb(t_data *data)
-// {	
-// }
+void	init_rgb(t_data *data)
+{	
+	int i;
+	int j;
+	int	k;
+	int	l;
+	int sum;
+
+	(void)l;
+	(void)k;
+
+	sum = 0;
+	i = 3;
+	k = -1;
+	l = -1;
+	while (++i <= 5)
+	{
+		l++;
+		j = -1;
+		k = -1;
+		while (data->texture[i][++j])	// F 220,100,30/ C 225,30,0
+		{
+			if (('0' <= data->texture[i][j] && data->texture[i][j] <= '9'))
+				sum = (sum * 10) + (data->texture[i][j] - 48);
+			if (data->texture[i][j] == ',' || data->texture[i][j + 1] == '\0')
+			{
+				data->rgb[l][++k] = sum;
+				sum = 0;
+			}
+		}
+	}
+	printf("%d\n", data->rgb[0][0]);
+	printf("%d\n", data->rgb[0][1]);
+	printf("%d\n", data->rgb[0][2]);
+	printf("%d\n", data->rgb[1][0]);
+	printf("%d\n", data->rgb[1][1]);
+	printf("%d\n", data->rgb[1][2]);
+}
 
 void	init_data(t_data *data, int count)
 {
@@ -59,8 +94,6 @@ void	fd_opener(t_data *data)
 
 void	map_scan(t_data *data, int count, char *str)
 {
-	// int	i;
-
 	fd_opener(data);
 	while (1)
 	{
@@ -77,10 +110,6 @@ void	map_scan(t_data *data, int count, char *str)
 		error(data, "malloc error");
 	data->map[count] = NULL;
 	init_texture(data);
-	// i = -1;
-	// while (++i)
-	// {													devam edicez
-	// 	data->rgb[0][i] = init_rgb(data, data.);
-	// }
+	init_rgb(data);
     init_data(data, count);
 }

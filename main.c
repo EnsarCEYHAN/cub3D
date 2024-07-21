@@ -1,18 +1,28 @@
 #include "cub3D.h"
 #include <stddef.h>
 #include "minilibx/mlx.h"
+#include <stdlib.h> // delete
 
-
-int	rgb(int red, int green, int blue)
+int rgb(int red, int green, int blue)
 {
-	return ((red << 16) | (green << 8) | blue);
+	int	sum;
+	
+	sum = 0; 
+	sum += red * (256 * 256);
+	sum += green * 256;
+	sum += blue;
+
+	return (sum); 
 }
 
 void enes(t_data *data)
 {
 	int	i;
 	int	j;
-	
+	int x;
+
+	x = rgb(data->rgb[0][0], data->rgb[0][1], data->rgb[0][2]);
+	printf("%d\n", x);
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		error(data, "Mlx_init Error");
@@ -22,18 +32,14 @@ void enes(t_data *data)
 	i = -1;
 	while (++i < W_HEIGHT)
 	{
-		{
-			j = -1;
-			while (++j < W_WIDTH)
-			{
-				if (i < W_HEIGHT / 2)
-					mlx_pixel_put(data->mlx, data->window, j, i, 14443520);
-				else
-					mlx_pixel_put(data->mlx, data->window, j, i, 0xFF0000);
-			}
+		j = -1;
+		while (++j < W_WIDTH)
+		{			if (i < W_HEIGHT / 2)
+				mlx_pixel_put(data->mlx, data->window, j, i, x);
+			else
+				mlx_pixel_put(data->mlx, data->window, j, i, 255);
 		}
 	}
-	mlx_loop(&data->mlx);
 }
 
 void	starter(t_data *data, char *name)
@@ -50,12 +56,12 @@ int	main(int argc, char *argv[])
 	(void)argv;
 	(void)argc;
 
-	printf("%d", rgb(255, 255, 255));
 	starter(&data, argv[1]);
-	enes(&data);
 	if (argc != 2)
 		error(&data, "Arg Error");
     check(&data, argv[1]);
 	map_scan(&data, 0, NULL);
+	enes(&data);
+	mlx_loop(&data.mlx);
     return (free_all(&data), 0);
 }

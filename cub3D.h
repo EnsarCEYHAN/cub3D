@@ -10,11 +10,12 @@ typedef struct s_data
 {
 	char	**texture;
 	char 	**map;
-	int		**rgb[2][3];
+	int		rgb[2][3];
 	char	*map_name;
 	void	*mlx;
 	void 	*window;
 	int		fd;
+	int		deneme;
 } t_data;
 
 
