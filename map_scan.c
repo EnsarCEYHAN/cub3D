@@ -24,43 +24,31 @@ void	init_texture(t_data *data)
 	}
 }
 
-void	init_rgb(t_data *data)
+void	init_rgb(t_data *data, int i)
 {	
-	int i;
 	int j;
 	int	k;
 	int	l;
 	int sum;
 
-	(void)l;
-	(void)k;
-
 	sum = 0;
-	i = 3;
-	k = -1;
 	l = -1;
 	while (++i <= 5)
 	{
 		l++;
 		j = -1;
 		k = -1;
-		while (data->texture[i][++j])	// F 220,100,30/ C 225,30,0
+		while (data->texture[i][++j])
 		{
 			if (('0' <= data->texture[i][j] && data->texture[i][j] <= '9'))
 				sum = (sum * 10) + (data->texture[i][j] - 48);
-			if (data->texture[i][j] == ',' || data->texture[i][j + 1] == '\0')
+			if (data->texture[i][j] == ',' || !data->texture[i][j + 1])
 			{
 				data->rgb[l][++k] = sum;
 				sum = 0;
 			}
 		}
 	}
-	printf("%d\n", data->rgb[0][0]);
-	printf("%d\n", data->rgb[0][1]);
-	printf("%d\n", data->rgb[0][2]);
-	printf("%d\n", data->rgb[1][0]);
-	printf("%d\n", data->rgb[1][1]);
-	printf("%d\n", data->rgb[1][2]);
 }
 
 void	init_data(t_data *data, int count)
@@ -110,6 +98,6 @@ void	map_scan(t_data *data, int count, char *str)
 		error(data, "malloc error");
 	data->map[count] = NULL;
 	init_texture(data);
-	init_rgb(data);
+	init_rgb(data, 3);
     init_data(data, count);
 }

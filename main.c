@@ -5,24 +5,14 @@
 
 int rgb(int red, int green, int blue)
 {
-	int	sum;
-	
-	sum = 0; 
-	sum += red * (256 * 256);
-	sum += green * 256;
-	sum += blue;
-
-	return (sum); 
+	return ((red * 256 * 256) + (green * 256) + blue); 
 }
 
 void enes(t_data *data)
 {
 	int	i;
 	int	j;
-	int x;
 
-	x = rgb(data->rgb[0][0], data->rgb[0][1], data->rgb[0][2]);
-	printf("%d\n", x);
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		error(data, "Mlx_init Error");
@@ -35,9 +25,11 @@ void enes(t_data *data)
 		j = -1;
 		while (++j < W_WIDTH)
 		{			if (i < W_HEIGHT / 2)
-				mlx_pixel_put(data->mlx, data->window, j, i, x);
+				mlx_pixel_put(data->mlx, data->window, j, i,
+					rgb(data->rgb[0][0], data->rgb[0][1], data->rgb[0][2]));
 			else
-				mlx_pixel_put(data->mlx, data->window, j, i, 255);
+				mlx_pixel_put(data->mlx, data->window, j, i,
+					rgb(data->rgb[1][0], data->rgb[1][1], data->rgb[1][2]));
 		}
 	}
 }
