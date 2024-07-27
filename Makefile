@@ -1,6 +1,7 @@
 NAME	:= cub3D
 
-FLAGS	:= -Wall -Wextra -Werror -g
+FLAGS	:= -Wall -Wextra -Werror -I/path/minilibx/ #-g
+MLXFLAG = -L./minilibx -lmlx -lXext -lX11 -lm
 
 CC		:= gcc
 RM		:= rm -rf
@@ -9,7 +10,6 @@ SRC		:=	main.c\
 			map_scan.c\
 			utils.c
 
-LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
 LIBFT	:= Libft/libft.a
 GNL     := GNL/gnl.a
 OBJ		:= $(SRC:.cpp=.o)
@@ -29,7 +29,7 @@ FCLEAN_MSG	:= printf "Executable $(RED)$(NAME)$(RESET) removed\n"
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(GNL) $(LIBRARY) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(GNL) $(MLXFLAG) -o $(NAME)
 	$(CC_MSG)
 	$(SUCCESS_MSG)
 
