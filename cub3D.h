@@ -5,6 +5,7 @@
 # define	W_HEIGHT 600
 
 #include <stdio.h> // delete it when push
+#include <unistd.h> // delete it when push
 
 typedef struct s_data
 {
@@ -16,6 +17,7 @@ typedef struct s_data
 	void 	*window;
 	int		fd;
 	int		deneme;
+	int		pp[2];
 } t_data;
 
 
